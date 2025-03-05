@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const Main = () => {
-
     const [search, setSearch] = useState("")
 
     const searchMovies = (e) => {
