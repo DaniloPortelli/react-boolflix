@@ -1,47 +1,98 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useGlobalContext } from "../contexts/GlobalContext"
+
 
 const Main = () => {
-    const [search, setSearch] = useState("")
+    const { movies, tvs } = useGlobalContext()
+    const urlBaseCopertina = import.meta.env.VITE_APP_BASE_URL_COPERTINA
 
-    const searchMovies = (e) => {
 
-        e.preventDefault();
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=0ee6c621f41d693fdef2025e489837b3&query=${search}`)
-            .then((res) => res.json())
-            .then(data => setMovies(data.results))
+    if (movies.length === 0 && tvs.length === 0) {
+        return (
+            <div>
+
+            </div>
+        )
+    } else {
+
+
+        return (
+
+
+            <main>
+                        <h1>Film</h1>
+                    <div className="cardContainer">
+
+                        {
+                            movies.map((elem) => {
+
+                                let bandiera = (elem.original_language.toUpperCase())
+                                bandiera === "EN" ? bandiera = "GB" : bandiera
+                                bandiera === "JA" ? bandiera = "JP" : bandiera
+
+
+                                return (
+                                    <div key={elem.id} className="card">
+
+                                        {/* <li>Titolo:{elem.title}</li>
+                                            <li>Titolo originale:{elem.original_title}</li>
+                                            <li>Lingua:
+                                                < img width={20}
+                                                    alt={bandiera}
+                                                    src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${bandiera}.svg`} />
+                                            </li>
+                                            <li>Voto:{(elem.vote_average / 2).toFixed()}/5</li> */}
+                                        <figure>
+                                            <img className="imgCopertina" src={`${urlBaseCopertina}${elem.poster_path}`} alt={elem.original_title} />
+                                        </figure>
+
+                                    </div>
+                                )
+                            }
+                            )
+                        }
+                    </div>
+
+
+                        <h1>Serie tv</h1>
+                    <div className="cardContainer">
+                        {
+                            tvs.map((elem) => {
+                                let bandiera = (elem.original_language.toUpperCase())
+                                bandiera === "EN" ? bandiera = "GB" : bandiera
+                                bandiera === "JA" ? bandiera = "JP" : bandiera
+
+                                return (
+                                    
+                                        // {/* <li>Titolo:{elem.name}</li>
+                                        //     <li>Titolo originale:{elem.original_name}</li>
+                                        //     <li>Lingua:
+                                        //         < img width={20}
+                                        //             alt={bandiera}
+                                        //             src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${bandiera}.svg`} />
+
+                                        //     </li>
+                                        //     <li>Voto:{(elem.vote_average / 2).toFixed()}/5</li> */}
+                                        <div key={elem.id} className="card">
+                                            <figure>
+                                                <img className="imgCopertina" src={`${urlBaseCopertina}${elem.poster_path}`} alt={elem.original_name} />
+                                            </figure>
+                                        </div>
+
+                                    
+                                )
+                            }
+                            )
+                        }
+                    </div>
+
+
+
+            </main>
+        )
+
     }
 
-    const [movies, setMovies] = useState([]);
-
-    return (
-        <main>
-            <div>
-                <form onSubmit={searchMovies}>
-                    <input
-                        type="text"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                    />
-                    <button type="submit">Search</button>
-                </form>
-
-                {
-                    movies.map((m) => {
-                        return (
-                            <>
-                                <ul>
-                                    <li>Titolo:{m.title}</li>
-                                    <li>Titolo originale:{m.original_title}</li>
-                                    <li>Lingua:{m.original_language}</li>
-                                    <li>Voto:{(m.vote_average / 2).toFixed()}/5</li>
-                                </ul>
-                            </>
-                        )
-                    })
-                }
-            </div>
-        </main>
-    )
 }
 
 
