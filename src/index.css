@@ -10,18 +10,24 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: solid rgb(117, 0, 0);
+    background-color: #0F0F0F;
+
+
 }
 
 .headerContainer {
     padding: 20px;
-    border: solid red;
+    border: solid rgb(117, 0, 0);
     background-color: #0F0F0F;
     display: flex;
     justify-content: space-between;
 }
 
 .booflix {
-    color: red;
+    color: rgb(117, 0, 0);
+    font-weight: 700;
+    font-size: 2rem;
 }
 
 .searchBar {}
@@ -34,6 +40,11 @@ main {
 
 }
 
+.categories{
+    color: wheat;
+    padding: 20px;
+}
+
 .cardContainer {
     /* border: 3px green solid; */
     width: 80%;
@@ -43,23 +54,38 @@ main {
     gap: 30px;
     padding: 20px;
 
+
 }
 
 .card {
     /* border: 2px red solid; */
-    flex-basis: calc(100% / 3 - 30px);
-    aspect-ratio: 3/5;
-    overflow: hidden
+    flex-basis: calc(100% / 5 - 30px);
+    overflow: hidden;
+    background-color: wheat;
+    border: solid rgb(117, 0, 0);
+
+
 }
 
-.cardData{
-    /* display: none; */
-    border:  2px color red;
+.imgContainer{
+    width: 100%;
+    height: 65%;
+
+
 }
 
 
 .imgCopertina {
     width: 100%;
     height: 100%;
-    object-fit: cover
+    object-fit: cover;
+    border: solid rgb(117, 0, 0);
+
+}
+
+.infoData{
+    font-size: 15px;
+    padding: 10px;
+    line-height: 25px;
+    padding-left: 30px;
 }

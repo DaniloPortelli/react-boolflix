@@ -16,7 +16,7 @@ const Main = () => {
 
         return (
             <main>
-                <h1>Film</h1>
+                <h1 className="categories">Elenco Film</h1>
                 <div className="cardContainer">
 
                     {
@@ -26,26 +26,26 @@ const Main = () => {
                             bandiera === "JA" ? bandiera = "JP" : bandiera
 
                             return (
-                                <>
-                                    <div key={elem.id} className="card">
-                                        {/* <li>Titolo:{elem.title}</li>
+                                <div key={elem.id} className="card">
+                                    <figure className="imgContainer">
+                                        <img className="imgCopertina" src={`${urlBaseCopertina}${elem.poster_path}`} alt={elem.original_title} />
+                                    </figure>
+                                    <div className="infoData">
+                                        <ul>
+
+                                            <li>Titolo:{elem.title}</li>
                                             <li>Titolo originale:{elem.original_title}</li>
                                             <li>Lingua:
                                                 < img width={20}
                                                     alt={bandiera}
                                                     src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${bandiera}.svg`} />
                                             </li>
-                                            <li>Voto:{(elem.vote_average / 2).toFixed()}/5</li> */}
-                                        <figure>
-                                            <img className="imgCopertina" src={`${urlBaseCopertina}${elem.poster_path}`} alt={elem.original_title} />
-                                        </figure>
-                                    </div>
+                                            <li>Voto:{(elem.vote_average / 2).toFixed()}/5</li>
 
-                                    <div key={elem.id} className="cardData">
-                                        roba
-                                    </div>
+                                        </ul>
 
-                                </>
+                                    </div>
+                                </div>
                             )
                         }
                         )
@@ -53,7 +53,7 @@ const Main = () => {
                 </div>
 
 
-                <h1>Serie tv</h1>
+                <h1 className="categories">Elenco Serie tv</h1>
                 <div className="cardContainer">
                     {
                         tvs.map((elem) => {
@@ -63,29 +63,23 @@ const Main = () => {
 
                             return (
 
-                                <>
-
-                                // {/* <li>Titolo:{elem.name}</li>
-                                //     <li>Titolo originale:{elem.original_name}</li>
-                                //     <li>Lingua:
-                                //         < img width={20}
-                                //             alt={bandiera}
-                                //             src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${bandiera}.svg`} />
-                                //     </li>
-                                //     <li>Voto:{(elem.vote_average / 2).toFixed()}/5</li> */}
-                                    <div key={elem.id} className="card">
-                                        <figure>
-                                            <img className="imgCopertina" src={`${urlBaseCopertina}${elem.poster_path}`} alt={elem.original_name} />
-                                        </figure>
+                                <div key={elem.id} className="card">
+                                    <figure className="imgContainer">
+                                        <img className="imgCopertina" src={`${urlBaseCopertina}${elem.poster_path}`} alt={elem.original_name} />
+                                    </figure>
+                                    <div className="infoData">
+                                        <ul>
+                                            <li>Titolo:{elem.name}</li>
+                                            <li>Titolo originale:{elem.original_name}</li>
+                                            <li>Lingua:
+                                                < img width={20}
+                                                    alt={bandiera}
+                                                    src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${bandiera}.svg`} />
+                                            </li>
+                                            <li>Voto:{(elem.vote_average / 2).toFixed()}/5</li>
+                                        </ul>
                                     </div>
-
-
-                                    <div key={elem.id} className="cardData">
-                                        <h1>roba</h1>
-                                    </div>
-
-                                </>
-
+                                </div>
                             )
                         }
                         )
