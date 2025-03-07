@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useGlobalContext } from "../contexts/GlobalContext"
 
 
+
 const Main = () => {
     const { movies, tvs } = useGlobalContext()
     const urlBaseCopertina = import.meta.env.VITE_APP_BASE_URL_COPERTINA
@@ -25,6 +26,21 @@ const Main = () => {
                             bandiera === "EN" ? bandiera = "GB" : bandiera
                             bandiera === "JA" ? bandiera = "JP" : bandiera
 
+                            const arrayStars = [];
+                            const stellaVuota = <span>&#9734;</span>
+                            const stellaPiena = <span>&#9733;</span>
+
+                            const voto = (elem.vote_average / 2).toFixed()
+
+                            for (let i = 1; i <= voto; i++) {
+                                arrayStars.push(stellaPiena)
+                            }
+
+                            for (let i = 1; i <= 5 - voto; i++) {
+                                arrayStars.push(stellaVuota)
+                            }
+
+
                             return (
                                 <div key={elem.id} className="card">
                                     <figure className="imgContainer">
@@ -32,7 +48,6 @@ const Main = () => {
                                     </figure>
                                     <div className="infoData">
                                         <ul>
-
                                             <li>Titolo:{elem.title}</li>
                                             <li>Titolo originale:{elem.original_title}</li>
                                             <li>Lingua:
@@ -40,10 +55,8 @@ const Main = () => {
                                                     alt={bandiera}
                                                     src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${bandiera}.svg`} />
                                             </li>
-                                            <li>Voto:{(elem.vote_average / 2).toFixed()}/5</li>
-
+                                            <li>Voto:{arrayStars}</li>
                                         </ul>
-
                                     </div>
                                 </div>
                             )
@@ -61,6 +74,19 @@ const Main = () => {
                             bandiera === "EN" ? bandiera = "GB" : bandiera
                             bandiera === "JA" ? bandiera = "JP" : bandiera
 
+                            const arrayStars = [];
+                            const stellaVuota = <span>&#9734;</span>
+                            const stellaPiena = <span>&#9733;</span>
+
+                            const voto = (elem.vote_average / 2).toFixed()
+
+                            for (let i = 1; i <= voto; i++) {
+                                arrayStars.push(stellaPiena)
+                            }
+
+                            for (let i = 1; i <= 5 - voto; i++) {
+                                arrayStars.push(stellaVuota)
+                            }
                             return (
 
                                 <div key={elem.id} className="card">
@@ -76,7 +102,7 @@ const Main = () => {
                                                     alt={bandiera}
                                                     src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${bandiera}.svg`} />
                                             </li>
-                                            <li>Voto:{(elem.vote_average / 2).toFixed()}/5</li>
+                                            <li>Voto:{arrayStars}</li>
                                         </ul>
                                     </div>
                                 </div>
